@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:Diary"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+        Name="AddEditStudentWindow"
         Title="Dane uczina" Height="520" Width="400">
     <Grid>
         <Grid.RowDefinitions>
@@ -28,41 +29,41 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0"  Grid.Column="0" Content="Id:" Margin="5"/>
-        <TextBox Grid.Row="0"  Grid.Column="1" Margin="5"/>
+        <Label Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="0"  Grid.Column="0" Content="Id:" Margin="5"/>
+        <TextBox Text="{Binding Student.Id}" Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}" IsReadOnly="True" Grid.Row="0"  Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="1"  Grid.Column="0" Content="Imię:" Margin="5"/>
-        <TextBox Grid.Row="1"  Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.FirstName}" Grid.Row="1"  Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="2"  Grid.Column="0" Content="Nazwisko:" Margin="5"/>
-        <TextBox Grid.Row="2"  Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.LastName}" Grid.Row="2"  Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="3"  Grid.Column="0" Content="Matematyka:" Margin="5"/>
-        <TextBox Grid.Row="3"  Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.Math}" Grid.Row="3"  Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="4"  Grid.Column="0" Content="Technologia:" Margin="5"/>
-        <TextBox Grid.Row="4"  Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.Technology}" Grid.Row="4"  Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="5"  Grid.Column="0" Content="Fizyka:" Margin="5"/>
-        <TextBox Grid.Row="5"  Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.Physics}" Grid.Row="5"  Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="6"  Grid.Column="0" Content="Jęz. pol.:" Margin="5"/>
-        <TextBox Grid.Row="6"  Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.PolishLang}" Grid.Row="6"  Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="7"  Grid.Column="0" Content="Jez. obc.:" Margin="5"/>
-        <TextBox Grid.Row="7"  Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.ForeignLang}" Grid.Row="7"  Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="8"  Grid.Column="0" Content="Grupa:" Margin="5"/>
-        <ComboBox Grid.Row="8"  Grid.Column="1" Margin="5"/>
+        <ComboBox ItemsSource="{Binding Groups}" SelectedValue="{Binding Student.Group.Id}" DisplayMemberPath="Name" SelectedValuePath="Id" Grid.Row="8"  Grid.Column="1" Margin="5"/>
 
-        <CheckBox Grid.Row="9"  Grid.Column="1" Content="Zajęcia dodatkowe" Margin="5" />
+        <CheckBox IsChecked="{Binding Student.Activities}" Grid.Row="9"  Grid.Column="1" Content="Zajęcia dodatkowe" Margin="5" />
 
         <Label Grid.Row="10"  Grid.Column="0" Content="Uwagi:" Margin="5"/>
-        <TextBox Grid.Row="10"  Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.Comments}" TextWrapping="Wrap" AcceptsReturn="True" Grid.Row="10"  Grid.Column="1" Margin="5"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Right">
-            <Button Content="Anuluj" Height="25" Width="100" Margin="5"/>
-            <Button Content="Zapisz" Height="25" Width="100" Margin="5"/>
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=AddEditStudentWindow}" Content="Anuluj" Height="25" Width="100" Margin="5"/>
+            <Button Command="{Binding ConfirmCommand}" CommandParameter="{Binding ElementName=AddEditStudentWindow}" Content="Zapisz" Height="25" Width="100" Margin="5"/>
         </StackPanel>
     </Grid>
 </mah:MetroWindow>

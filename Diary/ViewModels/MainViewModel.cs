@@ -103,6 +103,8 @@ namespace Diary.ViewModels
                 return;
 
             //usuwanie ucznia z bazy danych
+
+            RefreshDiary();
         }
 
         private bool CanEditDeleteStudent(object obj)

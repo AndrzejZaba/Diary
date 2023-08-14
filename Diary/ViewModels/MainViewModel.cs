@@ -1,5 +1,5 @@
 ﻿using Diary.Commands;
-using Diary.Models;
+using Diary.Models.Wrappers;
 using Diary.Views;
 using MahApps.Metro.Controls.Dialogs;
 using System;
@@ -31,9 +31,9 @@ namespace Diary.ViewModels
         public ICommand EditStudentCommand { get; set; }
         public ICommand DeleteStudentCommand { get; set; }
 
-        private Student _selectedStudent;
+        private StudentWrapper _selectedStudent;
 
-        public Student SelectedStudent
+        public StudentWrapper SelectedStudent
         {
             get { return _selectedStudent; }
             set 
@@ -43,9 +43,9 @@ namespace Diary.ViewModels
             }
         }
 
-        private ObservableCollection<Student> _students;
+        private ObservableCollection<StudentWrapper> _students;
 
-        public ObservableCollection<Student> Students
+        public ObservableCollection<StudentWrapper> Students
         {
             get { return _students; }
             set 
@@ -67,9 +67,9 @@ namespace Diary.ViewModels
             }
         }
 
-        private ObservableCollection<Group> _groups;
+        private ObservableCollection<GroupWrapper> _groups;
 
-        public ObservableCollection<Group> Groups
+        public ObservableCollection<GroupWrapper> Groups
         {
             get { return _groups; }
             set
@@ -81,7 +81,7 @@ namespace Diary.ViewModels
 
         private void AddEditStudent(object obj)
         {
-            var addEditStudentWindow = new AddEditStudentView(obj as Student);
+            var addEditStudentWindow = new AddEditStudentView(obj as StudentWrapper);
             addEditStudentWindow.Closed += addEditStudentWindow_Closed;
             addEditStudentWindow.ShowDialog();
         }
@@ -119,11 +119,11 @@ namespace Diary.ViewModels
 
         private void InitGroups()
         {
-            Groups = new ObservableCollection<Group>
+            Groups = new ObservableCollection<GroupWrapper>
             {
-                new Group {Id = 0, Name="Wszytskie"},
-                new Group {Id = 1, Name="1A"},
-                new Group {Id = 2, Name="2A"}
+                new GroupWrapper {Id = 0, Name="Wszytskie"},
+                new GroupWrapper {Id = 1, Name="1A"},
+                new GroupWrapper {Id = 2, Name="2A"}
             };
 
             SelectedGroupId = 0;
@@ -131,11 +131,11 @@ namespace Diary.ViewModels
 
         private void RefreshDiary()
         {
-            Students = new ObservableCollection<Student>
+            Students = new ObservableCollection<StudentWrapper>
             {
-                new Student { FirstName = "Kazimierz", LastName="Kowalski", Group= new Group{Id = 1, Name = "3A"} },
-                new Student { FirstName = "Marek", LastName="Nowak", Group= new Group{Id = 1, Name = "3A"} },
-                new Student { FirstName = "Max", LastName="Linda", Group= new Group{Id = 2, Name = "3B"} }
+                new StudentWrapper { FirstName = "Kazimierz", LastName="Kowalski", Group= new GroupWrapper{Id = 1, Name = "3A"} },
+                new StudentWrapper { FirstName = "Marek", LastName="Nowak", Group= new GroupWrapper{Id = 1, Name = "3A"} },
+                new StudentWrapper { FirstName = "Max", LastName="Linda", Group= new GroupWrapper{Id = 2, Name = "3B"} }
             };
         }
     }

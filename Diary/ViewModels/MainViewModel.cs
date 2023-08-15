@@ -1,4 +1,5 @@
 ﻿using Diary.Commands;
+using Diary.Models.Domains;
 using Diary.Models.Wrappers;
 using Diary.Views;
 using MahApps.Metro.Controls.Dialogs;
@@ -15,6 +16,7 @@ namespace Diary.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private Repository _repository = new Repository();
         public MainViewModel()
         {
             AddStudentCommand = new RelayCommand(AddEditStudent);
@@ -67,9 +69,9 @@ namespace Diary.ViewModels
             }
         }
 
-        private ObservableCollection<GroupWrapper> _groups;
+        private ObservableCollection<Group> _groups;
 
-        public ObservableCollection<GroupWrapper> Groups
+        public ObservableCollection<Group> Groups
         {
             get { return _groups; }
             set
@@ -102,7 +104,7 @@ namespace Diary.ViewModels
             if (dialog != MessageDialogResult.Affirmative)
                 return;
 
-            //usuwanie ucznia z bazy danych
+            _repository.DeleteStudent(SelectedStudent.Id);
 
             RefreshDiary();
         }
@@ -119,24 +121,18 @@ namespace Diary.ViewModels
 
         private void InitGroups()
         {
-            Groups = new ObservableCollection<GroupWrapper>
-            {
-                new GroupWrapper {Id = 0, Name="Wszytskie"},
-                new GroupWrapper {Id = 1, Name="1A"},
-                new GroupWrapper {Id = 2, Name="2A"}
-            };
+            
+            var groups = _repository.GetGroups();
+            groups.Insert(0, new Group { Id = 0, Name = "Wszystkie" });
+
+            Groups = new ObservableCollection<Group>(groups);
 
             SelectedGroupId = 0;
         }
 
         private void RefreshDiary()
         {
-            Students = new ObservableCollection<StudentWrapper>
-            {
-                new StudentWrapper { FirstName = "Kazimierz", LastName="Kowalski", Group= new GroupWrapper{Id = 1, Name = "3A"} },
-                new StudentWrapper { FirstName = "Marek", LastName="Nowak", Group= new GroupWrapper{Id = 1, Name = "3A"} },
-                new StudentWrapper { FirstName = "Max", LastName="Linda", Group= new GroupWrapper{Id = 2, Name = "3B"} }
-            };
+            Students = new ObservableCollection<StudentWrapper>(_repository.GetStudents(SelectedGroupId));
         }
     }
 }

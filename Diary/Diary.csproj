@@ -98,6 +98,10 @@
     <Compile Include="Migrations\202308141808482_SetFirstNameMaxLengthAndRequiredInStudentTable.designer.cs">
       <DependentUpon>202308141808482_SetFirstNameMaxLengthAndRequiredInStudentTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202308151559304_SetLastNameMaxLengthAndRequiredInStudentsTable.cs" />
+    <Compile Include="Migrations\202308151559304_SetLastNameMaxLengthAndRequiredInStudentsTable.designer.cs">
+      <DependentUpon>202308151559304_SetLastNameMaxLengthAndRequiredInStudentsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Configurations\GroupConfiguration.cs" />
     <Compile Include="Models\Configurations\RatingConfiguration.cs" />
@@ -108,6 +112,7 @@
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\Wrappers\GroupWrapper.cs" />
     <Compile Include="Models\Wrappers\StudentWrapper.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="ViewModels\AddEditStudentViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -143,6 +148,9 @@
     <EmbeddedResource Include="Migrations\202308141808482_SetFirstNameMaxLengthAndRequiredInStudentTable.resx">
       <DependentUpon>202308141808482_SetFirstNameMaxLengthAndRequiredInStudentTable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308151559304_SetLastNameMaxLengthAndRequiredInStudentsTable.resx">
+      <DependentUpon>202308151559304_SetLastNameMaxLengthAndRequiredInStudentsTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -158,6 +166,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DbScripts\202308151559304_SetLastNameMaxLengthAndRequiredInStudentsTable.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

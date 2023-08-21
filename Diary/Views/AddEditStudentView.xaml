@@ -33,10 +33,10 @@
         <TextBox Text="{Binding Student.Id}" Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}" IsReadOnly="True" Grid.Row="0"  Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="1"  Grid.Column="0" Content="Imię:" Margin="5"/>
-        <TextBox Text="{Binding Student.FirstName}" Grid.Row="1"  Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.FirstName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"  Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="2"  Grid.Column="0" Content="Nazwisko:" Margin="5"/>
-        <TextBox Text="{Binding Student.LastName}" Grid.Row="2"  Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Student.LastName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2"  Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="3"  Grid.Column="0" Content="Matematyka:" Margin="5"/>
         <TextBox Text="{Binding Student.Math}" Grid.Row="3"  Grid.Column="1" Margin="5"/>
@@ -54,7 +54,7 @@
         <TextBox Text="{Binding Student.ForeignLang}" Grid.Row="7"  Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="8"  Grid.Column="0" Content="Grupa:" Margin="5"/>
-        <ComboBox ItemsSource="{Binding Groups}" SelectedValue="{Binding Student.Group.Id}" DisplayMemberPath="Name" SelectedValuePath="Id" Grid.Row="8"  Grid.Column="1" Margin="5"/>
+        <ComboBox ItemsSource="{Binding Groups}" SelectedValue="{Binding Student.Group.Id, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" SelectedValuePath="Id" Grid.Row="8"  Grid.Column="1" Margin="5"/>
 
         <CheckBox IsChecked="{Binding Student.Activities}" Grid.Row="9"  Grid.Column="1" Content="Zajęcia dodatkowe" Margin="5" />
 

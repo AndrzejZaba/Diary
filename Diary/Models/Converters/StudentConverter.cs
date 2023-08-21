@@ -70,7 +70,7 @@ namespace Diary.Models.Converters
                         }));
 
             if (!string.IsNullOrWhiteSpace(model.Technology))
-                model.Math.Split(',').ToList().ForEach(x =>
+                model.Technology.Split(',').ToList().ForEach(x =>
                     ratings.Add(
                         new Rating
                         {
@@ -80,7 +80,7 @@ namespace Diary.Models.Converters
                         }));
 
             if (!string.IsNullOrWhiteSpace(model.Physics))
-                model.Math.Split(',').ToList().ForEach(x =>
+                model.Physics.Split(',').ToList().ForEach(x =>
                     ratings.Add(
                         new Rating
                         {
@@ -90,7 +90,7 @@ namespace Diary.Models.Converters
                         }));
 
             if (!string.IsNullOrWhiteSpace(model.PolishLang))
-                model.Math.Split(',').ToList().ForEach(x =>
+                model.PolishLang.Split(',').ToList().ForEach(x =>
                     ratings.Add(
                         new Rating
                         {
@@ -100,7 +100,7 @@ namespace Diary.Models.Converters
                         }));
 
             if (!string.IsNullOrWhiteSpace(model.ForeignLang))
-                model.Math.Split(',').ToList().ForEach(x =>
+                model.ForeignLang.Split(',').ToList().ForEach(x =>
                     ratings.Add(
                         new Rating
                         {

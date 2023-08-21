@@ -91,12 +91,15 @@ namespace Diary.ViewModels
             groups.Insert(0, new Group { Id = 0, Name = "-- brak --" });
             Groups = new ObservableCollection<Group>(groups);
 
-            Student.Group.Id = 0;
+            SelectedGroupId = Student.Group.Id;
         }
 
 
         private void Confirm(object obj)
         {
+            if (!Student.IsValid)
+                return;
+            
             if (!IsUpdate)
                 AddStudent();
             else
@@ -107,12 +110,12 @@ namespace Diary.ViewModels
 
         private void UpdateStudent()
         {
-            //baza danych
+            _repository.UpdateStudent(Student);
         }
 
         private void AddStudent()
         {
-            //baza danych
+            _repository.AddStudent(Student);
         }
 
         private void Close(object obj)

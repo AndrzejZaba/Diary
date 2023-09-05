@@ -1,15 +1,23 @@
 using Diary.Models.Configurations;
 using Diary.Models.Domains;
+using Diary.Properties;
 using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace Diary
 {
     public class ApplicationDbContext : DbContext
     {
+        private static string _connectionString = $@"
+            Server={Settings.Default.ServerAddress}\{Settings.Default.ServerName};
+            Database={Settings.Default.Database};
+            Trusted_Connection=True;"; 
+
+
         public ApplicationDbContext()
-            : base("name=ApplicationDbContext")
+            : base(_connectionString)
         {
         }
 

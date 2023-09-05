@@ -16,7 +16,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
+        <DockPanel Grid.Row="0" >
             <Button 
                 Command="{Binding AddStudentCommand}"
                 Content="Dodaj" 
@@ -50,7 +50,16 @@
                 Height="25" 
                 Width ="100" 
                 Margin="5"/>
-        </StackPanel>
+            <Button 
+                Command="{Binding EditUserSettingsCommand}" 
+                HorizontalAlignment="Right"
+                Height="35" 
+                Width ="35" 
+                Margin="5 5 15 5"
+                Background="White">
+                <Image Source="..\Icons\settings.png"></Image>
+            </Button>
+        </DockPanel>
 
         <DataGrid 
             Grid.Row="1" 

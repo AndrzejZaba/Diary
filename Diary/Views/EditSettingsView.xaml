@@ -1,0 +1,49 @@
+﻿<mah:MetroWindow x:Class="Diary.Views.EditSettingsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:Diary.Views"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Name="EditSettingsWindow"
+        Title="Edytuj ustawienia" Height="300" Width="460">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Adres serwera bazy danych" Margin="10"/>
+        <TextBox Text="{Binding SavedUserSettings.ServerAddress}"  Grid.Row="0" Grid.Column="1" Margin="10"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Nazwa serwera bazy danych" Margin="10"/>
+        <TextBox Text="{Binding SavedUserSettings.ServerName}" Grid.Row="1" Grid.Column="1" Margin="10"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Nazwa bazy danych" Margin="10"/>
+        <TextBox Text="{Binding SavedUserSettings.DataBase}" Grid.Row="2" Grid.Column="1" Margin="10"/>
+
+        <Label Grid.Row="3" Grid.Column="0" Content="Login użytkownika" Margin="10"/>
+        <TextBox Text="{Binding SavedUserSettings.Username}" Grid.Row="3" Grid.Column="1" Margin="10"/>
+
+        <Label Grid.Row="4" Grid.Column="0" Content="Hasło użytkownika" Margin="10"/>
+        <TextBox Text="{Binding SavedUserSettings.Password}" Grid.Row="4" Grid.Column="1" Margin="10"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="center">
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=EditSettingsWindow}" Content="Anuluj" Height="25" Width="100" Margin="5"/>
+            <Button Command="{Binding ConfirmCommand}" CommandParameter="{Binding ElementName=EditSettingsWindow}" Content="Zapisz" Height="25" Width="100" Margin="5"/>
+        </StackPanel>
+        
+    </Grid>
+</mah:MetroWindow>

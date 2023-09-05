@@ -23,6 +23,7 @@ namespace Diary.ViewModels
             EditStudentCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
             RefreshStudentCommand = new RelayCommand(RefreshStudents);
+            EditUserSettingsCommand = new RelayCommand(EditUserSettings);
             RefreshDiary();
 
             InitGroups();
@@ -32,6 +33,7 @@ namespace Diary.ViewModels
         public ICommand AddStudentCommand { get; set; }
         public ICommand EditStudentCommand { get; set; }
         public ICommand DeleteStudentCommand { get; set; }
+        public ICommand EditUserSettingsCommand { get; set; }
 
         private StudentWrapper _selectedStudent;
 
@@ -133,6 +135,12 @@ namespace Diary.ViewModels
         private void RefreshDiary()
         {
             Students = new ObservableCollection<StudentWrapper>(_repository.GetStudents(SelectedGroupId));
+        }
+
+        private void EditUserSettings(object obj)
+        {
+            var editSettingsWindow = new EditSettingsView();
+            editSettingsWindow.ShowDialog();
         }
     }
 }

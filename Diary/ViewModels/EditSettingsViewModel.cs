@@ -18,6 +18,8 @@ namespace Diary.ViewModels
     public class EditSettingsViewModel : ViewModelBase
     {
         private UserSettings _userSettings;
+        private readonly bool _canCloseWindow;
+
         public UserSettings UserSettings
         {
             get
@@ -30,13 +32,12 @@ namespace Diary.ViewModels
                 OnPropertyChanged();
             }
         }
-        public EditSettingsViewModel()
+        public EditSettingsViewModel(bool canCloseWindow)
         {
             CloseCommand = new RelayCommand(Close);
             ConfirmCommand = new RelayCommand(Confirm);
             _userSettings = new UserSettings();
-
-
+            _canCloseWindow = canCloseWindow;
         }
 
         public ICommand CloseCommand { get; set; }
@@ -59,7 +60,10 @@ namespace Diary.ViewModels
 
         private void Close(object obj)
         {
-            CloseWindow(obj as Window);
+            if (_canCloseWindow)
+                CloseWindow(obj as Window);
+            
+            Application.Current.Shutdown();
         }
 
         private void CloseWindow(Window window)

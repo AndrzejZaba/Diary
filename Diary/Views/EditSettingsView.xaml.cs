@@ -22,10 +22,10 @@ namespace Diary.Views
     /// </summary>
     public partial class EditSettingsView : MetroWindow
     {
-        public EditSettingsView()
+        public EditSettingsView(bool canCloseWindow)
         {
             InitializeComponent();
-            DataContext = new EditSettingsViewModel();
+            DataContext = new EditSettingsViewModel(canCloseWindow);
         }
     }
 }

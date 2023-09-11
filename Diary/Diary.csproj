@@ -311,6 +311,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="DbScripts\202308151559304_SetLastNameMaxLengthAndRequiredInStudentsTable.sql" />
+    <SplashScreen Include="Icons\SplashScreenImage.jpg" />
     <Resource Include="Icons\settings.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

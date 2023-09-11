@@ -2,6 +2,7 @@
 using Diary.Models.Domains;
 using Diary.Models.Wrappers;
 using Diary.Views;
+using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,9 @@ namespace Diary.ViewModels
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
             RefreshStudentCommand = new RelayCommand(RefreshStudents);
             EditUserSettingsCommand = new RelayCommand(EditUserSettings);
-            RefreshDiary();
+            LoadedWindowCommand = new RelayCommand(LoadedWindow);
 
-            InitGroups();
+            LoadedWindow(null);
         }
 
         public ICommand RefreshStudentCommand { get; set; }
@@ -34,6 +35,7 @@ namespace Diary.ViewModels
         public ICommand EditStudentCommand { get; set; }
         public ICommand DeleteStudentCommand { get; set; }
         public ICommand EditUserSettingsCommand { get; set; }
+        public ICommand LoadedWindowCommand { get; set; }
 
         private StudentWrapper _selectedStudent;
 
@@ -83,6 +85,30 @@ namespace Diary.ViewModels
             }
         }
 
+        private async void LoadedWindow(object arg)
+        {
+            if (!IsValidConnectionToDatabase())
+            {
+                var metroWindow = Application.Current.MainWindow as MetroWindow;
+                var dialog = await metroWindow.ShowMessageAsync("Błąd połączenia", $"Nie można połączyć się z bazą danych.", MessageDialogStyle.AffirmativeAndNegative);
+
+                if (dialog == MessageDialogResult.Negative)
+                {
+                    Application.Current.Shutdown();
+                }
+                else
+                {
+                    var settingsWindow = new EditSettingsView(false);
+                    settingsWindow.ShowDialog();
+                }
+            }
+            else
+            {
+                RefreshDiary();
+                InitGroups();
+            }
+
+        }
         private void AddEditStudent(object obj)
         {
             var addEditStudentWindow = new AddEditStudentView(obj as StudentWrapper);
@@ -139,8 +165,25 @@ namespace Diary.ViewModels
 
         private void EditUserSettings(object obj)
         {
-            var editSettingsWindow = new EditSettingsView();
+            var editSettingsWindow = new EditSettingsView(true);
             editSettingsWindow.ShowDialog();
+        }
+
+        private bool IsValidConnectionToDatabase()
+        {
+            try
+            {
+                using (var context = new ApplicationDbContext())
+                {
+                    context.Database.Connection.Open();
+                    context.Database.Connection.Close();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

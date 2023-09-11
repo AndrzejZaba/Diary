@@ -21,7 +21,7 @@ namespace Diary.Models.Wrappers
                     case nameof(Id):
                         if (Id == 0)
                         {
-                            Error = "Pole Imię jest wymagane.";
+                            Error = "Pole Grupa jest wymagane.";
                         }
                         else
                         {

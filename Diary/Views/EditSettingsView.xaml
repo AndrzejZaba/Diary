@@ -26,19 +26,19 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Adres serwera bazy danych" Margin="10"/>
-        <TextBox Text="{Binding SavedUserSettings.ServerAddress}"  Grid.Row="0" Grid.Column="1" Margin="10"/>
+        <TextBox Text="{Binding UserSettings.ServerAddress, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"  Grid.Row="0" Grid.Column="1" Margin="10"/>
 
         <Label Grid.Row="1" Grid.Column="0" Content="Nazwa serwera bazy danych" Margin="10"/>
-        <TextBox Text="{Binding SavedUserSettings.ServerName}" Grid.Row="1" Grid.Column="1" Margin="10"/>
+        <TextBox Text="{Binding UserSettings.ServerName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Row="1" Grid.Column="1" Margin="10"/>
 
         <Label Grid.Row="2" Grid.Column="0" Content="Nazwa bazy danych" Margin="10"/>
-        <TextBox Text="{Binding SavedUserSettings.DataBase}" Grid.Row="2" Grid.Column="1" Margin="10"/>
+        <TextBox Text="{Binding UserSettings.DataBase, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Row="2" Grid.Column="1" Margin="10"/>
 
         <Label Grid.Row="3" Grid.Column="0" Content="Login użytkownika" Margin="10"/>
-        <TextBox Text="{Binding SavedUserSettings.Username}" Grid.Row="3" Grid.Column="1" Margin="10"/>
+        <TextBox Text="{Binding UserSettings.Username, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Row="3" Grid.Column="1" Margin="10"/>
 
         <Label Grid.Row="4" Grid.Column="0" Content="Hasło użytkownika" Margin="10"/>
-        <TextBox Text="{Binding SavedUserSettings.Password}" Grid.Row="4" Grid.Column="1" Margin="10"/>
+        <TextBox Text="{Binding UserSettings.Password, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Row="4" Grid.Column="1" Margin="10"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="center">
             <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=EditSettingsWindow}" Content="Anuluj" Height="25" Width="100" Margin="5"/>

@@ -13,7 +13,8 @@ namespace Diary
         private static string _connectionString = $@"
             Server={Settings.Default.ServerAddress}\{Settings.Default.ServerName};
             Database={Settings.Default.Database};
-            Trusted_Connection=True;"; 
+            User Id={Settings.Default.User};
+            Password={Settings.Default.Password};"; 
 
 
         public ApplicationDbContext()
